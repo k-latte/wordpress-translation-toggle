@@ -19,7 +19,7 @@ function add_translation_toggle() {
     global $flag_en, $flag_es;
     ?>
     <!-- add toggle: -->
-    <div id="translation-toggle" style="position: fixed;bottom: 20px;right: 20px;padding: 10px;background-color: #FFF;color: #333;cursor: pointer;font-weight: bold;border-radius: 7px;box-shadow: 0px 0px 13px #DDD;" data-lang="EN">
+    <div id="translation-toggle" style="display: none;position: fixed;bottom: 20px;right: 20px;padding: 10px;background-color: #FFF;color: #333;cursor: pointer;font-weight: bold;border-radius: 7px;box-shadow: 0px 0px 13px #DDD;" data-lang="EN">
         <img src="<?php echo $flag_en; ?>" alt="English" style="vertical-align: text-bottom; margin-right: 5px;">
         <span>EN</span>
     </div>
@@ -33,8 +33,10 @@ function add_translation_toggle() {
         var esBlocks = document.querySelectorAll('.translation-block-es');
         // Si no hay bloques de traducción en la página, ocultar el toggle
         if (enBlocks.length === 0 || esBlocks.length === 0) {
-            document.getElementById('translation-toggle').style.display = 'none';
+            document.getElementById('translation-toggle').style.display = 'none';  // redundant: toggle starts hidden (display: none)
             return; // salir
+        } else {
+            document.getElementById('translation-toggle').style.display = 'block'; // display if needed
         }
 
         var langToggle = document.getElementById('translation-toggle');
